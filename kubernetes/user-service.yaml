@@ -9,7 +9,7 @@ data:
         "spring.datasource.url": "jdbc:postgresql://banka-1-ha:5432/bank_userservice",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
         "spring.datasource.driver-class-name": "org.postgresql.Driver",
-        "oauth.jwt.secret": "my_secret",
+        "oauth.jwt.secret": "secret_key",
         "spring.mail.host":"smtp.gmail.com",
         "spring.mail.port":587,
         "spring.mail.username":"noreply.rafbanka1@gmail.com",
