@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: user-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
 data:
   application.properties: |
     {
@@ -20,9 +20,9 @@ data:
         "server.port": 8080,
         "front.port": 4200,
         "springdoc.packagesToScan": "rs.edu.raf.banka1.controller",
+        "spring.devtools.restart.additional-exclude": "logs/**",
         "exchangeRateAPIToken": "5eb8b116c5d704eea74c42f1",
         "exchangeRateApiUrl": "https://v6.exchangerate-api.com/v6/",
-        "spring.devtools.restart.additional-exclude": "logs/**",
         "marketServiceUrl": "http://market-service:8081"
     }
 ---
@@ -30,7 +30,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
   labels:
     service: user-service
 spec:
@@ -44,7 +44,7 @@ spec:
         service: user-service
     spec:
       containers:
-        - image: harbor.k8s.elab.rs/banka-1/user-service:latest
+        - image: harbor.k8s.elab.rs/banka-1/user-service:{{ .Values.imageTag }}
           imagePullPolicy: Always
           name: user-service
           env:
@@ -77,7 +77,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: user-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     service: user-service

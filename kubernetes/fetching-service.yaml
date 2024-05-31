@@ -8,6 +8,7 @@ data:
     {
       "spring.datasource.url": "jdbc:postgresql://banka-1-ha:5432/bank_marketservice",
       "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+      "spring.jpa.hibernate.ddl-auto" : "update",
       "oauth.jwt.secret": "secret_key",
       "listingAPItoken": "pk_f87286e075c94cc484405da70691c030",
       "alphaVantageAPIToken":"OF6BVKZOCXWHD9NS",
@@ -22,6 +23,7 @@ data:
       "forexDailyApiUrl":"https://www.alphavantage.co/query?function=FX_DAILY",
       "optionsUrl":"https://query2.finance.yahoo.com/v7/finance/options/",
       "springdoc.packagesToScan": "rs.edu.raf.banka1.controller",
+      "spring.devtools.restart.additional-exclude": "logs/**",
       "dev.environment": false
       }
 ---

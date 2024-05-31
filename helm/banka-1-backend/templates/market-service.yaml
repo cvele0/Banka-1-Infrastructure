@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: market-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
 data:
   application.properties: |
     {
@@ -31,7 +31,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: market-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
   labels:
     service: market-service
 spec:
@@ -45,7 +45,7 @@ spec:
         service: market-service
     spec:
       containers:
-        - image: harbor.k8s.elab.rs/banka-1/market-service:latest
+        - image: harbor.k8s.elab.rs/banka-1/market-service:{{ .Values.imageTag }}
           imagePullPolicy: Always
           name: market-service
           env:
@@ -78,7 +78,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: market-service
-  namespace: banka-1-dev
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     service: market-service
